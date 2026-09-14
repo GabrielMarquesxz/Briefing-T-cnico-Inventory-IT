@@ -27,7 +27,7 @@ public class EquipamentoDAO {
     public List<Equipamento> listarTodos() {
         try (EntityManager em = JPAUtil.getEntityManager()) {
             return em.createQuery(
-                    "SELECT e FROM Equipamento e JOIN FETCH e.laboratorio ORDER BY e.id",
+                    "SELECT e FROM Equipamento e ORDER BY e.id",
                     Equipamento.class
             ).getResultList();
         }

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.inventory</groupId>
-    <artifactId>inventory-it-atividade</artifactId>
+    <artifactId>inventory-it</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
 
@@ -48,7 +48,7 @@
     </dependencies>
 
     <build>
-        <finalName>Inventory-IT-Atividade</finalName>
+        <finalName>Inventory-IT</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

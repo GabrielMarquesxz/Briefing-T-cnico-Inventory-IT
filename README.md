@@ -13,7 +13,6 @@ Demonstrar o desenvolvimento de uma aplicação Java Web utilizando Servlets, JS
 - Cadastro de equipamentos com número de série e tipo.
 - Seleção do laboratório no cadastro do equipamento.
 - Listagem dos equipamentos com o respectivo laboratório associado.
-- Redirecionamento após os cadastros pelo padrão POST-Redirect-GET.
 
 ## Tecnologias
 
@@ -90,7 +89,7 @@ Inventory-IT/
 1. Cadastre o Tomcat 11 em `Window > Preferences > Server > Runtime Environments`.
 2. Clique com o botão direito no projeto e selecione `Run As > Run on Server`.
 3. Escolha o servidor Tomcat 11 e conclua a configuração.
-4. Acesse `http://localhost:8080/Inventory-IT-Atividade/`.
+4. Acesse `http://localhost:8080/Inventory-IT/`.
 
 Para gerar o WAR pela linha de comando, execute:
 
@@ -98,9 +97,8 @@ Para gerar o WAR pela linha de comando, execute:
 mvn clean package
 ```
 
-O pacote será criado em `target/Inventory-IT-Atividade.war`.
+O pacote será criado em `target/Inventory-IT.war`.
 
 ## Página de apresentação
 
 A apresentação do projeto está disponível no [GitHub Pages](https://gabrielmarquesxz.github.io/Briefing-T-cnico-Inventory-IT/).
-
