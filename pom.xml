@@ -1,68 +1,37 @@
-<project>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Identificação do projeto -->
     <groupId>br.com.inventory</groupId>
-    <artifactId>inventory-it</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-
-    <!-- Aplicação web -->
+    <artifactId>inventory-it-atividade</artifactId>
+    <version>1.0.0</version>
     <packaging>war</packaging>
 
     <properties>
-
-        <!-- Java utilizado pelo projeto -->
-        <maven.compiler.release>21</maven.compiler.release>
-
-        <!-- Codificação -->
-        <project.build.sourceEncoding>
-            UTF-8
-        </project.build.sourceEncoding>
-
-        <project.reporting.outputEncoding>
-            UTF-8
-        </project.reporting.outputEncoding>
-
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-
-        <!-- ===================================================== -->
-        <!-- Jakarta Servlet API                                   -->
-        <!-- Fornecida pelo Tomcat 11                              -->
-        <!-- ===================================================== -->
-
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.1.0</version>
+            <version>6.0.0</version>
             <scope>provided</scope>
         </dependency>
-
-
-        <!-- ===================================================== -->
-        <!-- JSTL                                                  -->
-        <!-- Utilizada pelos JSPs com c:forEach, c:if, c:out etc. -->
-        <!-- ===================================================== -->
 
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
             <version>3.0.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.1</version>
         </dependency>
-
-
-        <!-- ===================================================== -->
-        <!-- Hibernate ORM                                         -->
-        <!-- Implementação utilizada pelo JPA                      -->
-        <!-- ===================================================== -->
 
         <dependency>
             <groupId>org.hibernate.orm</groupId>
@@ -70,54 +39,30 @@
             <version>6.4.4.Final</version>
         </dependency>
 
-
-        <!-- ===================================================== -->
-        <!-- Banco de dados H2                                     -->
-        <!-- ===================================================== -->
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.2.224</version>
+            <scope>runtime</scope>
         </dependency>
-
     </dependencies>
 
-
-    <!-- ========================================================= -->
-    <!-- Configuração de compilação                                -->
-    <!-- ========================================================= -->
-
     <build>
-
-        <finalName>inventory-it</finalName>
-
+        <finalName>Inventory-IT-Atividade</finalName>
         <plugins>
-
-            <!-- Compilação com Java 21 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
-
-                <configuration>
-                    <release>21</release>
-                </configuration>
             </plugin>
-
-            <!-- Geração do arquivo WAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
-
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-
         </plugins>
-
     </build>
-
 </project>

@@ -1,28 +1,17 @@
-package br.com.inventory.model;
+package br.com.inventory.modelo;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "laboratorio")
 public class Laboratorio {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
-
-    @Column(name = "bloco", nullable = false, length = 50)
     private String bloco;
-
-    public Laboratorio() {
-    }
 
     public Long getId() {
         return id;
