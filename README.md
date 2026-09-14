@@ -1,34 +1,23 @@
-# Inventory-IT — Atividade
+# Inventory-IT
 
-Versão final e mínima do Inventory-IT para a atividade de Servlets, JPA e Bootstrap 5. O sistema cadastra e lista laboratórios e equipamentos, mantendo a associação de cada equipamento com seu laboratório.
+O Inventory-IT é uma aplicação web acadêmica para o gerenciamento de laboratórios e equipamentos. O sistema permite registrar os laboratórios disponíveis, cadastrar equipamentos e associar cada equipamento ao laboratório em que está localizado.
 
-> A página de apresentação do projeto fica em [`docs/index.html`](docs/index.html) e pode ser publicada pelo GitHub Pages.
+## Objetivo
 
-## Escopo implementado
+Demonstrar o desenvolvimento de uma aplicação Java Web utilizando Servlets, JSP, persistência com JPA/Hibernate e banco de dados H2, com separação de responsabilidades entre interface, controle e acesso a dados.
 
-- Cadastro e listagem de laboratórios.
-- Cadastro e listagem de equipamentos.
-- Associação obrigatória entre equipamento e laboratório.
-- Carregamento dos laboratórios no campo de seleção do equipamento.
-- Exibição do laboratório associado na listagem de equipamentos.
-- Padrão POST-Redirect-GET depois dos cadastros.
+## Funcionalidades
 
-Para manter a atividade objetiva, não há edição, exclusão, pesquisa, filtros, camada de serviço ou regras adicionais.
-
-## Arquitetura
-
-```text
-Navegador → Servlet → DAO → JPA/Hibernate → H2
-```
-
-- As JSPs formam a interface e usam Bootstrap 5 e JSTL.
-- Os Servlets recebem as requisições e coordenam o fluxo.
-- Os DAOs contêm apenas as operações necessárias à atividade.
-- JPA/Hibernate realiza a persistência em um banco H2 em memória.
+- Cadastro de laboratórios com nome e bloco.
+- Listagem dos laboratórios cadastrados.
+- Cadastro de equipamentos com número de série e tipo.
+- Seleção do laboratório no cadastro do equipamento.
+- Listagem dos equipamentos com o respectivo laboratório associado.
+- Redirecionamento após os cadastros pelo padrão POST-Redirect-GET.
 
 ## Tecnologias
 
-- Java 17+
+- Java 17
 - Jakarta Servlet 6
 - Jakarta Persistence 3.1
 - Hibernate ORM 6.4
@@ -38,41 +27,80 @@ Navegador → Servlet → DAO → JPA/Hibernate → H2
 - Maven
 - Apache Tomcat 11
 
-O Maven é usado apenas para declarar dependências e gerar o WAR; não há arquivos JAR copiados manualmente para o projeto.
+## Arquitetura
 
-## Importar no Eclipse
+O fluxo principal da aplicação segue a estrutura:
 
-1. Acesse `File > Import`.
+```text
+Navegador → Servlet → DAO → JPA/Hibernate → H2
+```
+
+- **JSP e Bootstrap:** interface apresentada no navegador.
+- **Servlets:** processamento das requisições HTTP e controle da navegação.
+- **DAOs:** operações de persistência dos laboratórios e equipamentos.
+- **JPA/Hibernate:** mapeamento e gerenciamento das entidades.
+- **H2:** armazenamento dos dados em memória durante a execução.
+
+## Estrutura principal
+
+```text
+Inventory-IT/
+├── pom.xml
+├── src/main/java/br/com/inventory/
+│   ├── dao/
+│   │   ├── JPAUtil.java
+│   │   ├── LaboratorioDAO.java
+│   │   └── EquipamentoDAO.java
+│   ├── modelo/
+│   │   ├── Laboratorio.java
+│   │   └── Equipamento.java
+│   └── servlet/
+│       ├── LaboratorioServlet.java
+│       └── EquipamentoServlet.java
+├── src/main/resources/META-INF/
+│   └── persistence.xml
+├── src/main/webapp/
+│   ├── index.jsp
+│   ├── laboratorios.jsp
+│   ├── novo-equipamento.jsp
+│   └── equipamentos.jsp
+└── docs/
+    └── index.html
+```
+
+## Como executar no Eclipse e Tomcat 11
+
+### Requisitos
+
+- JDK 17 ou superior.
+- Eclipse IDE for Enterprise Java and Web Developers.
+- Apache Tomcat 11.
+- Maven integrado ao Eclipse.
+
+### Importação do projeto
+
+1. No Eclipse, acesse `File > Import`.
 2. Selecione `Maven > Existing Maven Projects`.
-3. Escolha a pasta clonada deste repositório.
-4. Confirme o `pom.xml` encontrado e clique em `Finish`.
-5. Se necessário, clique com o botão direito no projeto e use `Maven > Update Project`.
+3. Escolha a pasta deste repositório.
+4. Confirme o arquivo `pom.xml` e clique em `Finish`.
+5. Se necessário, clique com o botão direito no projeto e selecione `Maven > Update Project`.
 
-## Executar no Tomcat 11
+### Execução
 
-1. Tenha o JDK 17 ou superior instalado.
-2. Cadastre o Tomcat 11 em `Window > Preferences > Server > Runtime Environments`.
-3. Clique com o botão direito no projeto e selecione `Run As > Run on Server`.
-4. Escolha o Tomcat 11 e conclua a configuração.
-5. Abra `http://localhost:8080/Inventory-IT-Atividade/`.
+1. Cadastre o Tomcat 11 em `Window > Preferences > Server > Runtime Environments`.
+2. Clique com o botão direito no projeto e selecione `Run As > Run on Server`.
+3. Escolha o servidor Tomcat 11 e conclua a configuração.
+4. Acesse `http://localhost:8080/Inventory-IT-Atividade/`.
 
-Também é possível gerar o pacote pela linha de comando:
+Para gerar o WAR pela linha de comando, execute:
 
 ```bash
 mvn clean package
 ```
 
-O arquivo pronto para implantação será criado em:
+O pacote será criado em `target/Inventory-IT-Atividade.war`.
 
-```text
-target/Inventory-IT-Atividade.war
-```
+## Página de apresentação
 
-## Decisão sobre transações
-
-O projeto usa Jakarta Persistence 3.1, em que `EntityManager` implementa `AutoCloseable`. Por isso, os DAOs usam `try-with-resources`. Nas gravações, um `finally` mínimo executa rollback somente se a transação continuar ativa. Não há `catch (Exception)` genérico.
-
-## GitHub Pages e screenshots
-
-A vitrine estática está pronta na pasta [`docs`](docs). Os espaços reservados para screenshots ficam na seção “Demonstração” de `docs/index.html`. Depois de capturar as telas reais da aplicação, salve as imagens em `docs/assets/` e substitua cada bloco `.screenshot-placeholder` por uma tag `<img>` conforme o comentário existente no HTML.
+A apresentação do projeto está disponível no [GitHub Pages](https://gabrielmarquesxz.github.io/Briefing-T-cnico-Inventory-IT/).
 
